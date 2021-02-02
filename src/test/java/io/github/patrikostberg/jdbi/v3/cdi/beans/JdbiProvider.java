@@ -11,18 +11,18 @@ import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 @ApplicationScoped
 public class JdbiProvider {
-  private Jdbi jdbi;
-  
-  @PostConstruct
-  public void init() {
-    jdbi = Jdbi.create("jdbc:h2:mem:test");
-    jdbi.installPlugin(new SqlObjectPlugin());
-  }
+    private Jdbi jdbi;
 
-  @Produces
-  @Default
-  @Dependent
-  public Jdbi createJdbi() {
-    return jdbi;
-  }
+    @PostConstruct
+    public void init() {
+        jdbi = Jdbi.create("jdbc:h2:mem:test");
+        jdbi.installPlugin(new SqlObjectPlugin());
+    }
+
+    @Produces
+    @Default
+    @Dependent
+    public Jdbi getJdbi() {
+        return jdbi;
+    }
 }
